@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Endless Elevator</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script type="module" src="main.js?v=2"></script>
+</head>
+  <link rel="icon" href="data:,">
+<body>
+  <!-- Whole scene centered on the desktop -->
+  <div id="scene" aria-label="Elevator scene">
+    <!-- One shaft with two lanes: left = car, right = floors viewport -->
+    <div id="shaft" aria-label="Elevator shaft">
+      <!-- Left rail/lane: the car sits here and barely jiggles -->
+      <div class="lane lane-car" aria-label="Car lane">
+        <div id="car" aria-label="Elevator car">
+          <img src="assets/elevator/car_body.png" class="carBody" alt="Elevator car body" />
+          <div class="riders" aria-label="Riders container"></div>
+        </div>
+      </div>
+
+      <!-- Right rail/lane: the camera viewport that shows only 3 floors.
+           JS moves #tower up/down (translateY) to simulate travel. -->
+      <div class="lane lane-floors" aria-label="Floors viewport">
+        <div id="tower" aria-live="polite"><!-- JS injects .floor rows here --></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,117 @@
+/* ---- Base ---- */
+html, body {
+    margin: 0;
+    height: 100%;
+    background: #111;         /* desktop surround color */
+    overflow: hidden;
+  }
+  
+  #scene {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-items: center;      /* center the shaft on screen */
+  }
+  
+  /* ---- Shaft = camera viewport (JS will set height to visibleFloors*floorHeight) ---- */
+  #shaft {
+    position: relative;
+    width: 100%;             /* total width for both lanes; tweak to taste */
+    height: 1080px;           /* fallback; JS overwrites with camera height */
+    background: #caa351;      /* gold shaft look */
+    overflow: hidden;         /* show only 3 floors at a time */
+    border-radius: 10px;
+    box-shadow: 0 10px 40px rgba(0,0,0,.35);
+  
+    display: grid;            /* two lanes: left = car, right = floors */
+    grid-template-columns: 220px 1fr; /* car lane ~220px, floors get the rest */
+  }
+  
+  /* Subtle top/bottom fades to hint more floors beyond */
+  #shaft::before, #shaft::after {
+    content: "";
+    position: absolute; left: 0; width: 100%; height: 64px; z-index: 5;
+    pointer-events: none;
+  }
+  #shaft::before { top: 0;    background: linear-gradient(to bottom, rgba(0,0,0,.25), rgba(0,0,0,0)); }
+  #shaft::after  { bottom: 0; background: linear-gradient(to top,    rgba(0,0,0,.25), rgba(0,0,0,0)); }
+  
+  /* ---- Lanes ---- */
+  .lane {
+    position: relative;
+    height: 100%;
+  }
+  .lane-car {
+    display: grid;
+    place-items: center;      /* keep car centered vertically & horizontally in the car lane */
+  }
+  .lane-floors {
+    position: relative;
+    overflow: hidden;         /* camera for floors */
+  }
+  
+  /* ---- Tower of floors (this is what JS moves with translateY) ---- */
+  #tower {
+    position: absolute;
+    inset: 0;                 /* fill the floors lane */
+    transform: translateY(0);
+    will-change: transform;   /* smoother GPU updates */
+  }
+  
+  /* ---- Floors ---- */
+  .floor {
+    position: relative;
+    width: 100%;
+    height: 300px;            /* JS keeps this synced with config.viewport.floorHeight */
+  }
+  
+  .floor img.bg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;        /* use your full floor art */
+    display: block;
+  }
+  
+  /* Waiting queue strip along the bottom of each floor */
+  .queue {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    display: flex; gap: 8px; align-items: flex-end;
+    padding: 8px;
+    pointer-events: none;     /* wallpaper doesn’t need mouse */
+  }
+  
+  /* ---- Car & riders (doors removed) ---- */
+  #car {
+    position: relative;
+    width: 200px;        /* ~scaled width of your car art */
+    height: 300px;       /* fits nicely in one floor slot (360px) */
+    pointer-events: none;
+  }
+  
+  #car .carBody {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    height: 100%;        /* scale car body by height */
+    width: auto;         /* preserve aspect ratio */
+  }
+  
+  #car .operator {
+    position: absolute;
+    left: 20px; bottom: 40px; /* place to taste relative to your car art */
+    width: 60px; height: auto;
+  }
+  
+  #car .riders {
+    position: absolute;
+    right: 18px; bottom: 28px;     /* cluster riders inside the car */
+    display: flex; gap: 6px; align-items: flex-end;
+  }
+  
+  .person {
+    width: 56px; height: auto;     /* default rider size; tweak for your art */
+    transform: translateZ(0);
+  }
+  
