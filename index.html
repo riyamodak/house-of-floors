@@ -1,13 +1,26 @@
+=== index.html ===
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <title>Endless Elevator</title>
+
+  <!-- Mobile hygiene (doesn't fix desktop zoom seams, but correct for phones/tablets) -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- CSS -->
   <link rel="stylesheet" href="style.css" />
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-  <script type="module" src="main.js?v=2"></script>
-</head>
+
+  <!-- Preload key art for faster first paint -->
+  <link rel="preload" as="image" href="assets/elevator/car_body.png">
+
+  <!-- Icon -->
   <link rel="icon" href="data:,">
+
+  <!-- GSAP + App -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script type="module" src="main.js?v=3"></script>
+</head>
 <body>
   <!-- Whole scene centered on the desktop -->
   <div id="scene" aria-label="Elevator scene">

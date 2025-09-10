@@ -1,12 +1,12 @@
 {
-    "viewport": { "visibleFloors": 3, "floorHeight": 360, "speed": 1.0, "doorTime": 1200 },
     "elevator": { "capacity": 6 },
     "floors": [
       { "id": 1, "bg": "assets/floors/floor1.png" },
       { "id": 2, "bg": "assets/floors/floor2.png" },
       { "id": 3, "bg": "assets/floors/floor3.png" },
       { "id": 4, "bg": "assets/floors/floor4.png" },
-      { "id": 5, "bg": "assets/floors/floor5.png" }
+      { "id": 5, "bg": "assets/floors/floor5.png" },
+      { "id": 6, "bg": "assets/floors/floor6.png" }
     ],
     "peoplePool": [
       {"sprite":"assets/people/person1.png"},
